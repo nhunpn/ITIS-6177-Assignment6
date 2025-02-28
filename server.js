@@ -3,6 +3,15 @@ const app = express();
 const port = 3000;
 const mariadb = require('mariadb');
 
+const pool = mariadb.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'sample',
+    port: 3306,
+    connectionLimit: 500,
+});
+
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
@@ -27,15 +36,6 @@ app.use(cors());
 app.use(express.json());
 
 
-
-const pool = mariadb.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'sample',
-  port: 3306,
-  connectionLimit: 100,
-});
 
 // POST endpoint
 /**
